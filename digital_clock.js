@@ -1,44 +1,46 @@
-const hour = new Date().getHours();
-const minute = new Date().getMinutes();
-
-const takeSecond = () => {
-  let second = new Date().getSeconds();
-  extract(second);
-  setTimeout(takeSecond, 1000);
-};
-
-extract = (sn) => {
-  return sn;
-};
-takeSecond();
 const clock = document.getElementById("clock");
-clock.innerHTML = `${hour} :  ${minute} :  ${extract()}`;
+const time = document.getElementById("time");
 
-// function showTime() {
-//   var date = new Date();
-//   var h = date.getHours(); // 0 - 23
-//   var m = date.getMinutes(); // 0 - 59
-//   var s = date.getSeconds(); // 0 - 59
-//   var session = "AM";
+const show = () => {
+  let hour = new Date().getHours();
+  let minute = new Date().getMinutes();
+  const milisec = new Date().getMilliseconds();
+  console.log(milisec);
 
-//   if (h == 0) {
-//     h = 12;
-//   }
+  //   let second = new Date().toLocaleTimeString().slice(6, 8);
+  //   console.log(second);
+  let second = new Date().getSeconds();
+  let status = "AM"; //! flag mantıgi..
 
-//   if (h > 12) {
-//     h = h - 12;
-//     session = "PM";
-//   }
+  //   const times = new Date().toLocaleTimeString();
 
-//   h = h < 10 ? "0" + h : h;
-//   m = m < 10 ? "0" + m : m;
-//   s = s < 10 ? "0" + s : s;
+  //   let secondHour = times.slice(0, 2);
+  //   if (secondHour > 12) {
+  //     secondHour = secondHour - 12;
+  //   }
 
-//   var time = h + ":" + m + ":" + s + " " + session;
-//   document.getElementById("MyClockDisplay").innerText = time;
-//   document.getElementById("MyClockDisplay").textContent = time;
+  //   time.innerHTML = times;
+  //   console.log(times);
 
-//   setTimeout(showTime, 1000);
-// }
+  if (hour == 0) {
+    hour = 12;
+  }
+  if (hour < 10) {
+    hour = "0" + hour;
+  }
+  if (hour > 12) {
+    hour = hour - 12;
+    status = "PM";
+  }
+  if (second == 0) {
+    second = "0";
+  }
+  if (second < 10) {
+    second = "0" + second;
+  }
 
-// showTime();
+  clock.innerHTML = `${hour} :  ${minute} :  ${second}  ${status}`;
+  setTimeout(show, 1000);
+};
+// show()
+window.onload = show();
