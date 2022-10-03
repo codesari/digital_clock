@@ -5,19 +5,22 @@
 }
 
 .container {
-    background-color: black;
-    color: aqua;
+    background-color: rgb(37, 27, 55);
+    color: rgb(255, 202, 202);
     height: 100vh;
     width: 100%;
     text-align: center;
     position: absolute;
 
+
 }
 
 .wrapper {
     /* border: 2px solid red; */
+
     position: relative;
     top: 50%;
+
 }
 
 p {
@@ -34,7 +37,7 @@ p {
 p::before {
     /** bir önceki relative'e göre kendini konumlandırır */
     position: absolute;
-    background-color: darkgreen;
+    background-color: rgb(55, 41, 72);
     content: "";
     /** icerigin görünmesi icin content özelligini kullanıyoruz ve width ve height vermeden göremiyoruz  */
     height: 250px;
@@ -45,7 +48,45 @@ p::before {
     right: 240px;
     bottom: -80px;
     /* ? buradaki top,bottom,left,right ile istedigimiz gibi oynayıp kendimiz konumlandırıyoruz. */
+    animation-name: shine;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
 
 
+
+}
+
+.buttons {
+    margin-top: 8rem;
+}
+
+.btn {
+    background-color: rgb(255, 202, 202);
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 10px;
+    width: 20%;
+    font-size: 24px;
+    color: rgb(37, 27, 55);
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: rgb(55, 41, 72);
+    color: rgb(255, 202, 202);
+    ;
+}
+
+@keyframes shine {
+
+    0% {}
+
+    50% {
+        box-shadow: 0px 0px 32px -12px rgb(255, 236, 239);
+    }
+
+    /* 100% {
+        box-shadow: 0px 0px 32px -12px rgb(255, 236, 239);
+    } */
 
 }

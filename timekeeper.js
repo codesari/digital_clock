@@ -1,70 +1,89 @@
 const time = document.getElementById("time");
-const startButton = document.getElementById("start");
-const pauseButton = document.getElementById("pause");
-const resetButton = document.getElementById("reset");
 
-let hour = 0;
-let minute = 0;
-let second = 0;
-let milliseconds = 0;
-time.innerHTML = `${hour} : ${minute} : ${second} : ${milliseconds}`;
+const singleButton = document.getElementById("singleButton");
+const stopButton = document.getElementById("stop");
 
-startButton.addEventListener("click", () => {
-  const start = () => {
-    milliseconds++;
-    time.innerHTML = `${hour} : ${minute} : ${second} : ${milliseconds}`;
-    if (milliseconds >= 99) {
-      milliseconds = 0;
-      second++;
-      if (second > 59) {
-        second = 0;
-        minute++;
-        if (minute > 59) {
-          minute = 0;
-          hour++;
+let hour = "00";
+let min = "00";
+let sec = "00";
+let ms = "00";
+
+let interval;
+
+singleButton.addEventListener("click", start);
+function start() {
+  interval = setInterval(timer, 10);
+  singleButton.removeEventListener("click", start);
+  singleButton.addEventListener("click", pause);
+  singleButton.innerHTML = "Pause";
+}
+function pause() {
+  clearInterval(interval);
+  singleButton.removeEventListener("click", pause);
+  singleButton.addEventListener("click", resume);
+  singleButton.innerHTML = "Resume";
+}
+function resume() {
+  interval = setInterval(timer, 10);
+  singleButton.removeEventListener("click", resume);
+  singleButton.addEventListener("click", pause);
+  singleButton.innerHTML = "Pause";
+}
+stopButton.addEventListener("click", reset);
+function reset() {
+  clearInterval(interval);
+  hour = "00";
+  min = "00";
+  sec = "00";
+  ms = "00";
+  timeKeeper();
+  singleButton.removeEventListener("click", resume);
+  singleButton.removeEventListener("click", pause);
+  singleButton.addEventListener("click", start);
+  singleButton.innerHTML = "Start";
+}
+
+const timer = () => {
+  timeKeeper();
+  ms++;
+
+  if (ms < 10) {
+    ms = "0" + ms;
+  }
+  if (ms > 99) {
+    ms = 0;
+    ms = "0" + ms;
+
+    sec++;
+    if (sec < 10) {
+      sec = "0" + sec;
+    }
+    if (sec > 59) {
+      sec = 0;
+      sec = "0" + sec;
+      min++;
+      if (min < 10) {
+        min = "0" + min;
+      }
+      if (min > 59) {
+        min = 0;
+        min = "0" + min;
+        hour++;
+        if (hour < 10) {
+          hour = "0" + hour;
         }
       }
     }
-    setTimeout(start, 16.7);
-  };
-  start();
-});
+  }
+};
 
-// Kronometre
-// const krono = document.querySelector("#clock");
-
-// let sn = 55;
-// let isControl = false;
-// let intv;
-// let min = 0;
-
-// function baslat() {
-//   isControl = !isControl;
-//   if (isControl) {
-//     intv = setInterval(() => {
-//       sn++;
-//       if (sn > 59) {
-//         min++;
-//         sn = 0;
-//       }
-
-//       let hourAlarm = prompt("Enter an hour,please..");
-//       let minAlarm = prompt("Enter a minute,please..");
-//       if ((min == hourAlarm) & (sn == minAlarm)) {
-//         alert("adasdasdas");
-//       }
-
-//       if (min < 10) {
-//         krono.innerHTML = `0${min} :  ${sn}`;
-//       } else krono.innerHTML = `${min} :  ${sn}`;
-//     }, 1);
-//   } else {
-//     clearInterval(intv);
-//   }
-// }
-
-// function reset() {
-//   sn = 0;
-//   krono.innerHTML = 0;
-// }
-// alert
+function timeKeeper() {
+  time.innerHTML = `
+  <span>${hour}</span>
+        <span>:</span>
+        <span class="min">${min}</span>
+        <span>:</span>
+        <span>${sec}</span>
+        <span>:</span>
+        <span>${ms}</span>`;
+}
