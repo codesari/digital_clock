@@ -15,19 +15,19 @@ function start() {
   interval = setInterval(timer, 10);
   singleButton.removeEventListener("click", start);
   singleButton.addEventListener("click", pause);
-  singleButton.innerHTML = "Pause";
+  singleButton.innerHTML = `<i class="fa-solid fa-pause"></i>`;
 }
 function pause() {
   clearInterval(interval);
   singleButton.removeEventListener("click", pause);
   singleButton.addEventListener("click", resume);
-  singleButton.innerHTML = "Resume";
+  singleButton.innerHTML = `<i class="fa-solid fa-play"></i>`;
 }
 function resume() {
   interval = setInterval(timer, 10);
   singleButton.removeEventListener("click", resume);
   singleButton.addEventListener("click", pause);
-  singleButton.innerHTML = "Pause";
+  singleButton.innerHTML = `<i class="fa-solid fa-pause"></i>`;
 }
 stopButton.addEventListener("click", reset);
 function reset() {
@@ -40,7 +40,7 @@ function reset() {
   singleButton.removeEventListener("click", resume);
   singleButton.removeEventListener("click", pause);
   singleButton.addEventListener("click", start);
-  singleButton.innerHTML = "Start";
+  singleButton.innerHTML = `<i class="fa-solid fa-play"></i>`;
 }
 
 const timer = () => {

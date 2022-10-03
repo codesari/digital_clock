@@ -5,22 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-      body {
-        background-color: black;
-        color: yellowgreen;
-
-        /* display: flex; */
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-      }
-      p {
-        font-size: 72px;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <h1><i class="fa-solid fa-clock"></i> Time Keeper</h1>
     <div class="container">
       <p id="time">
         <span>00</span>
@@ -31,8 +32,10 @@
         <span>:</span>
         <span>00</span>
       </p>
-      <button id="singleButton">Start</button>
-      <button id="stop">Stop</button>
+      <button class="btn" id="singleButton">
+        <i class="fa-solid fa-play"></i>
+      </button>
+      <button class="btn" id="stop"><i class="fa-solid fa-stop"></i></button>
 
       <!-- <button id="alarm">Set Alarm</button> -->
     </div>
