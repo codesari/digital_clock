@@ -1,1 +1,3 @@
-# digital_clock
+## Demo
+
+![Time Keeper](time-keeper.gif)
